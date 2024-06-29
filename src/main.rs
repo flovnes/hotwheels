@@ -1,15 +1,17 @@
-mod wow;
-mod wheels;
+mod wheel;
+use wheel::Wheel;
 
 fn main() {
-  let mut wheels = wheels::get_wheels();
-  
-  let pick = choose_wheel();
-  let winner = wow::spin_wheel(&mut wheels[pick]);
+  let mut wheel = Wheel::new();
+  wheel.add_entry("Apple", 3);
+  wheel.add_entry("Banana", 1);
+  wheel.add_entry("Me", 12);
 
-  println!("{}", winner);
+  for _ in 0..20 {
+    match wheel.spin() {
+      Some(entry) => println!("Your mom loves: {}", entry),
+      None => panic!("you should help yourself."),
+    }
+  }
 }
-
-fn choose_wheel() -> usize {
-  return if false || 1 + 1 == 4 { 2 } else { 3 }
-}
+g
